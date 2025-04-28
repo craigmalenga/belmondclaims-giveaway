@@ -1,18 +1,16 @@
 // server.js
-import express                from 'express';
-import bodyParser             from 'body-parser';
-import mysql                  from 'mysql2/promise';
-import path                   from 'path';
-import { fileURLToPath }      from 'url';
-import dotenv                 from 'dotenv';
+import express           from 'express';
+import bodyParser        from 'body-parser';
+import mysql             from 'mysql2/promise';
+import path              from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config();
-
+// ES-module __dirname shim
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
 const app = express();
-// pool can accept a connection URI string in DATABASE_URL
+// Pool will read the DATABASE_URL env var (set by Railway)
 const pool = mysql.createPool(process.env.DATABASE_URL);
 
 app.use(express.static(__dirname));
@@ -27,7 +25,7 @@ app.post('/submit', async (req, res) => {
     await pool.execute(
       `INSERT INTO entries (email, notify, opt_in)
        VALUES (?, ?, ?)`,
-      [ email, shouldNotify, opt_in ]
+      [email, shouldNotify, opt_in]
     );
     res.sendStatus(200);
   } catch (err) {
