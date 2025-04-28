@@ -1,27 +1,33 @@
 // server.js
-import express    from 'express';
-import bodyParser from 'body-parser';
-import mysql      from 'mysql2/promise';
-import path       from 'path';
-import { fileURLToPath } from 'url';
+import express                from 'express';
+import bodyParser             from 'body-parser';
+import mysql                  from 'mysql2/promise';
+import path                   from 'path';
+import { fileURLToPath }      from 'url';
+import dotenv                 from 'dotenv';
 
-// ES-module __dirname shim:
+dotenv.config();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 
 const app = express();
+// pool can accept a connection URI string in DATABASE_URL
 const pool = mysql.createPool(process.env.DATABASE_URL);
 
-// Serve your static files (index.html, logo.png, etc)
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(__dirname));
 app.use(bodyParser.json());
 
 app.post('/submit', async (req, res) => {
-  const { email, notify } = req.body;
+  const { email, notify, marketing } = req.body;
+  const shouldNotify = notify ? 1 : 0;
+  const opt_in       = marketing ? 1 : 0;
+
   try {
     await pool.execute(
-      'INSERT INTO entries (email, notify) VALUES (?, ?)',
-      [email, notify ? 1 : 0]
+      `INSERT INTO entries (email, notify, opt_in)
+       VALUES (?, ?, ?)`,
+      [ email, shouldNotify, opt_in ]
     );
     res.sendStatus(200);
   } catch (err) {
@@ -31,4 +37,6 @@ app.post('/submit', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});

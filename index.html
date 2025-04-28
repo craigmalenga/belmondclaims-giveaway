@@ -195,6 +195,17 @@
       height:calc(var(--sm2-outer)*0.7);
     }
 
+    /* ========== FINAL MESSAGE ========== */
+    .final-message {
+      position: relative;
+      z-index: 20;
+      text-align: center;
+      color: #fff;
+      font-size: 3rem;
+      margin: 2rem auto;
+      max-width: 800px; /* or whatever fits your layout */
+    }
+
     /* MODAL */
     .modal {
       position:fixed; top:0; left:0;
@@ -372,8 +383,13 @@
         return;
       }
       modal.classList.remove('open');
-      enterBtn.textContent = 'You have been entered successfully';
-      enterBtn.disabled   = true;
+      const tg = document.querySelector('.text-group');
+      tg.innerHTML = `
+        <div class="final-message">
+          Great — your email has been entered into our amazing giveaway draw!<br>
+          We will email back with the results.
+        </div>
+      `;
     });
 
     modal.addEventListener('click', e => {
