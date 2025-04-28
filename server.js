@@ -1,13 +1,18 @@
-import express       from 'express';
-import bodyParser    from 'body-parser';
-import mysql         from 'mysql2/promise';
-import path          from 'path';
-import 'dotenv/config';  // only if you want to load a local .env
+// server.js
+import express    from 'express';
+import bodyParser from 'body-parser';
+import mysql      from 'mysql2/promise';
+import path       from 'path';
+import { fileURLToPath } from 'url';
+
+// ES-module __dirname shim:
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
 
 const app = express();
 const pool = mysql.createPool(process.env.DATABASE_URL);
 
-// serve static front-end
+// Serve your static files (index.html, logo.png, etc)
 app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.json());
 
