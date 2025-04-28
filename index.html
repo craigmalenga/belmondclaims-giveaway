@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Belmond &amp; Co Giveaway</title>
+
+  <!-- Roboto for body text -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ========== RESPONSIVE POSITION & SIZE VARIABLES ========== */
+    :root {
+      /* Positions as % of .content */
+      --small1-top: 20%;   --small1-left: 10%;
+      --ps5-top:    50%;   --ps5-left:    15%;
+      --tv-top:     15%;   --tv-left:     75%;
+      --small2-top: 85%;   --small2-left: 45%;
+
+      /* Responsive size clamps */
+      --ps5-inner:  clamp(150px, 20vw, 216px);
+      --tv-inner:   clamp(220px, 30vw, 365px);
+      --sm1-outer:  clamp( 50px,  8vw,  90px);
+      --sm2-outer:  clamp( 40px,  7vw,  76px);
+
+      /* Colours */
+      --bg:         #17134C;
+      --header-bg:  #F1F1F1;
+      --c-inner:    #DA2775;
+      --c-mid:      #BE246F;
+      --c-outer:    #821D62;
+      --accent:     #2FEFC1;
+    }
+
+    @font-face {
+      font-family: 'Brandon Grotesque';
+      src:
+        url('fonts/BrandonGrotesque-Bold.woff2') format('woff2'),
+        url('fonts/BrandonGrotesque-Bold.woff')  format('woff');
+      font-weight:700; font-style:normal;
+    }
+
+    * { box-sizing:border-box; margin:0; padding:0 }
+    body {
+      min-height:100vh;
+      background:var(--bg);
+      color:#fff;
+      font-family:'Brandon Grotesque',sans-serif;
+    }
+
+    /* HEADER */
+    .header {
+      background:var(--header-bg);
+      text-align:center;
+      padding:20px 0;
+      position:relative; z-index:10;
+    }
+    .header img { height:100px }
+
+    /* CONTENT + TITLES */
+    .content {
+      position:relative;
+      padding:100px 20px 200px;
+    }
+    .content h1, .content h2 {
+      position:relative; z-index:20;
+      text-align:center; margin:0 auto; width:fit-content;
+    }
+    .content h1 {
+      font-size:12rem; line-height:1; margin-top:20px;
+    }
+    .content h2 {
+      font-size:3rem; margin-bottom:0;
+    }
+
+    /* TEXT + FORM */
+    .text-group {
+      max-width:400px; margin:1rem auto 0;
+      display:flex; flex-direction:column; gap:1rem;
+      font-family:'Roboto',sans-serif; font-size:2.1rem; line-height:1.4;
+    }
+    .text-group p { text-align:left }
+    .checks {
+      display:flex; flex-direction:column; gap:.75rem;
+      font-size:1rem;
+    }
+    .checks input { width:18px; height:18px; accent-color:var(--accent); margin-right:8px }
+    .checks label {
+      display:flex; align-items:flex-start; cursor:pointer;
+      color:#fff; line-height:1.3;
+    }
+    .enter-btn {
+      margin-top:1rem; padding:15px; width:100%;
+      background:var(--accent); color:#17134C;
+      border:none; border-radius:4px;
+      font-size:1.2rem; cursor:pointer;
+      opacity:0.6;
+      font-family:'Brandon Grotesque',sans-serif;
+    }
+    .enter-btn:enabled { opacity:1 }
+
+    /* CLUSTER BASE */
+    .cluster {
+      position:absolute; z-index:1;
+    }
+    .cluster .circle {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+    }
+    .cluster .icon {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+    }
+    .circle.outer { background:var(--c-outer) }
+    .circle.mid   { background:var(--c-mid)   }
+    .circle.inner { background:var(--c-inner) }
+
+    /* --- SMALL1 (upper-left) --- */
+    .small1 {
+      top: var(--small1-top); left: var(--small1-left);
+      width: var(--sm1-outer); height: var(--sm1-outer);
+    }
+    .small1 .outer {
+      width: var(--sm1-outer); height: var(--sm1-outer);
+    }
+    .small1 .mid   {
+      width: calc(var(--sm1-outer)*0.85);
+      height:calc(var(--sm1-outer)*0.85);
+    }
+    .small1 .inner {
+      width: calc(var(--sm1-outer)*0.7);
+      height:calc(var(--sm1-outer)*0.7);
+    }
+
+    /* --- PS5 CLUSTER (left) --- */
+    .left-cluster {
+      top: var(--ps5-top); left: var(--ps5-left);
+      width:calc(var(--ps5-inner)*1.4);
+      height:calc(var(--ps5-inner)*1.4);
+    }
+    .left-cluster .outer {
+      width:calc(var(--ps5-inner)*1.4);
+      height:calc(var(--ps5-inner)*1.4);
+    }
+    .left-cluster .mid   {
+      width:calc(var(--ps5-inner)*1.2);
+      height:calc(var(--ps5-inner)*1.2);
+    }
+    .left-cluster .inner {
+      width:var(--ps5-inner); height:var(--ps5-inner);
+    }
+    .left-cluster .icon  {
+      width:calc(var(--ps5-inner)*0.72);
+    }
+
+    /* --- TV CLUSTER (right) --- */
+    .right-cluster {
+      top: var(--tv-top); left: var(--tv-left);
+      width:calc(var(--tv-inner)*1.4);
+      height:calc(var(--tv-inner)*1.4);
+    }
+    .right-cluster .outer {
+      width:calc(var(--tv-inner)*1.4);
+      height:calc(var(--tv-inner)*1.4);
+    }
+    .right-cluster .mid   {
+      width:calc(var(--tv-inner)*1.2);
+      height:calc(var(--tv-inner)*1.2);
+    }
+    .right-cluster .inner {
+      width:var(--tv-inner); height:var(--tv-inner);
+    }
+    .right-cluster .icon  {
+      width:calc(var(--tv-inner)*0.77);
+    }
+
+    /* --- SMALL2 (below button) --- */
+    .small2 {
+      top: var(--small2-top); left: var(--small2-left);
+      width: var(--sm2-outer); height: var(--sm2-outer);
+    }
+    .small2 .outer {
+      width: var(--sm2-outer); height: var(--sm2-outer);
+    }
+    .small2 .mid   {
+      width:calc(var(--sm2-outer)*0.85);
+      height:calc(var(--sm2-outer)*0.85);
+    }
+    .small2 .inner {
+      width:calc(var(--sm2-outer)*0.7);
+      height:calc(var(--sm2-outer)*0.7);
+    }
+
+    /* MODAL */
+    .modal {
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.5);
+      display:none; justify-content:center; align-items:center;
+      z-index:50;
+    }
+    .modal.open { display:flex; }
+    .modal-content {
+      background:#fff; padding:20px; border-radius:8px;
+      width:90%; max-width:400px; font-family:'Roboto',sans-serif;
+    }
+    .modal-content h3 {
+      text-align:center; margin-bottom:1rem; color:#17134C;
+    }
+    .modal-content input[type="email"] {
+      width:100%; padding:10px; margin-bottom:1rem;
+      border:2px solid #ccc; border-radius:4px; font-size:1rem;
+    }
+    .modal-content .reconsider { margin-bottom:1rem; }
+    .modal-content .reconsider p {
+      font-size:0.9rem; margin-bottom:0.5rem; color:#333;
+    }
+    .modal-content .reconsider label {
+      display:flex; align-items:center; cursor:pointer;
+      color:#000; font-size:1rem;
+    }
+    .modal-content input[type="checkbox"] {
+      width:18px; height:18px; accent-color:var(--accent);
+      margin-right:8px;
+    }
+    .modal-content button {
+      width:100%; padding:10px;
+      background:var(--accent); border:none; border-radius:4px;
+      color:#17134C; font-size:1rem; cursor:pointer;
+    }
+    .modal-content .error {
+      color:red; font-size:0.9rem; margin-top:0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="logo.png" alt="Belmond &amp; Co">
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <h1>WIN BIG</h1>
+    <h2>with Belmond &amp; Co and Smarterbuys!</h2>
+
+    <!-- TEXT & FORM -->
+    <div class="text-group">
+      <p>
+        Enter now for a chance to win a 65 Inch Samsung 2024 Crystal UHD TV
+        and a PS5 console — a great opportunity not to be missed!
+      </p>
+      <div class="checks">
+        <label><input type="checkbox" id="notify">
+          Tick here to allow Belmond / Smarterbuys to communicate with you
+          about the outcome of this giveaway
+        </label>
+        <label><input type="checkbox" id="marketing">
+          Tick here to allow Belmond / Smarterbuys to communicate with you
+          about future similar giveaways or other opportunities
+        </label>
+      </div>
+      <button class="enter-btn" id="enter" disabled>
+        Click here to enter the giveaway
+      </button>
+    </div>
+
+    <!-- CIRCLES -->
+    <div class="cluster small1">
+      <div class="circle outer"></div>
+      <div class="circle mid"></div>
+      <div class="circle inner"></div>
+    </div>
+
+    <div class="cluster left-cluster">
+      <div class="circle outer"></div>
+      <div class="circle mid"></div>
+      <div class="circle inner"></div>
+      <img class="icon" src="console.png" alt="PS5 Console">
+    </div>
+
+    <div class="cluster right-cluster">
+      <div class="circle outer"></div>
+      <div class="circle mid"></div>
+      <div class="circle inner"></div>
+      <img class="icon" src="tv.png" alt="Samsung TV">
+    </div>
+
+    <div class="cluster small2">
+      <div class="circle outer"></div>
+      <div class="circle mid"></div>
+      <div class="circle inner"></div>
+    </div>
+  </div>
+
+  <!-- EMAIL + RECONSIDER MODAL -->
+  <div class="modal" id="email-modal">
+    <div class="modal-content">
+      <h3>Enter your email</h3>
+      <input type="email" id="modal-email" placeholder="you@example.com">
+      <div class="reconsider" id="reconsider-section" style="display:none;">
+        <p>
+          Would you like to reconsider and opt into future similar giveaways or
+          communications from Belmond and Smarterbuys? Your data would not be
+          passed onto other third parties. You will still be entered into this
+          giveaway regardless of your selection here.
+        </p>
+        <label><input type="checkbox" id="modal-marketing">
+          Yes, I’d like to opt in as outlined
+        </label>
+      </div>
+      <button id="modal-submit">Submit</button>
+      <p class="error" id="modal-error"></p>
+    </div>
+  </div>
+
+  <script>
+    const notifyCb    = document.getElementById('notify');
+    const marketingCb = document.getElementById('marketing');
+    const enterBtn    = document.getElementById('enter');
+    const modal       = document.getElementById('email-modal');
+    const emailIn     = document.getElementById('modal-email');
+    const reconsider  = document.getElementById('reconsider-section');
+    const modalMark   = document.getElementById('modal-marketing');
+    const submitBtn   = document.getElementById('modal-submit');
+    const errorMsg    = document.getElementById('modal-error');
+
+    notifyCb.addEventListener('change', () => {
+      enterBtn.disabled = !notifyCb.checked;
+    });
+
+    enterBtn.addEventListener('click', () => {
+      if (!marketingCb.checked) {
+        reconsider.style.display = 'block';
+        modalMark.checked = false;
+      } else {
+        reconsider.style.display = 'none';
+      }
+      modal.classList.add('open');
+      emailIn.value = '';
+      errorMsg.textContent = '';
+      emailIn.focus();
+    });
+
+    submitBtn.addEventListener('click', async () => {
+      errorMsg.textContent = '';
+      const email = emailIn.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorMsg.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      if (reconsider.style.display === 'block' && modalMark.checked) {
+        marketingCb.checked = true;
+      }
+      try {
+        const res = await fetch('/submit', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            email,
+            notify: true,
+            marketing: marketingCb.checked
+          })
+        });
+        if (!res.ok) throw new Error();
+      } catch {
+        errorMsg.textContent = 'Submission failed. Please try again.';
+        return;
+      }
+      modal.classList.remove('open');
+      enterBtn.textContent = 'You have been entered successfully';
+      enterBtn.disabled   = true;
+    });
+
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('open');
+    });
+  </script>
+</body>
+</html>
