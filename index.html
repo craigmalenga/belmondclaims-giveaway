@@ -246,6 +246,53 @@
     .modal-content .error {
       color:red; font-size:0.9rem; margin-top:0.5rem;
     }
+
+    /* ========== MOBILE FRIENDLY OVERRIDES ========== */
+    @media (max-width: 768px) {
+      /* Logo at 70% width */
+      .header img {
+        width: 70%;
+        height: auto;
+      }
+
+      /* Headings max 90% width */
+      .content h1,
+      .content h2 {
+        width: 90%;
+        word-break: break-word;
+      }
+      .content h1 {
+        font-size: 8rem;
+      }
+      .content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 3rem; /* extra gap for circles */
+      }
+
+      /* Push text-group further down */
+      .text-group {
+        margin-top: 6rem;
+        padding: 0 10px;
+      }
+
+      /* Tweak cluster positions for mobile */
+      .small1 {
+        top: 25%;
+        left: 15%;
+      }
+      .left-cluster {
+        top: 45%;
+        left: 30%;
+      }
+      .right-cluster {
+        top: 45%;
+        left: 70%;
+      }
+      .small2 {
+        top: 80%;
+        left: 50%;
+      }
+    }
   </style>
 </head>
 <body>
