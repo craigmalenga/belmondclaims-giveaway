@@ -59,11 +59,11 @@
       padding:20px 0;
       position:relative; z-index:10;
       width:100%; left:0; transform:none;
+      min-width:100vw;
     }
     .header img {
       height:100px;
-      display:block;
-      margin:0 auto;
+      display:block; margin:0 auto;
     }
 
     /* CONTENT + TITLES */
@@ -216,6 +216,7 @@
     .modal-content {
       background:#fff; padding:20px; border-radius:8px;
       width:90%; max-width:400px; font-family:'Roboto',sans-serif;
+      margin:0 auto; text-align:center;
     }
     .modal-content h3 {
       text-align:center; margin-bottom:1rem; color:#17134C;
@@ -247,28 +248,15 @@
 
     /* ========== MOBILE FRIENDLY OVERRIDES ========== */
     @media (max-width: 768px) {
-      /* prevent any horizontal scroll */
-      body { overflow-x: hidden; }
-
-      /* header always full width, no transform hack */
-      .header {
-        padding: 5vw 0;
-      }
-      .header img {
-        width: 70%; height: auto;
-      }
-
       /* tighten content padding */
       .content {
         padding: 2rem 0 4rem;
       }
 
-      /* headings fill container, H1 nowrap, H2 wraps to two lines */
+      /* headings fill container, H1 nowrap, H2 wraps */
       .content h1,
       .content h2 {
-        width: 100%;
-        margin: 0;
-        padding: 0 1rem;
+        width: 100%; margin:0; padding:0 1rem; text-align:center;
       }
       .content h1 {
         white-space: nowrap;
@@ -284,27 +272,36 @@
       /* hide small decorative circles */
       .small1, .small2 { display: none; }
 
-      /* flex container for PS5 + TV flush left/right */
+      /* flex PS5+TV flush to edges, scaled to 50% */
       .clusters-row {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 0 1rem;
         margin-bottom: 1.5rem;
         position: relative;
+        padding: 0;
       }
       .clusters-row .cluster {
         position: relative !important;
         transform: none !important;
       }
       .clusters-row .left-cluster {
-        width: calc(var(--ps5-inner) * 0.6) !important;
-        height: calc(var(--ps5-inner) * 0.6) !important;
+        width: calc(var(--ps5-inner)*0.5) !important;
+        height: calc(var(--ps5-inner)*0.5) !important;
       }
       .clusters-row .right-cluster {
-        width: calc(var(--tv-inner) * 0.6) !important;
-        height: calc(var(--tv-inner) * 0.6) !important;
+        width: calc(var(--tv-inner)*0.5) !important;
+        height: calc(var(--tv-inner)*0.5) !important;
+      }
+
+      /* center the modal */
+      .modal {
+        justify-content: center !important;
+        align-items: center !important;
+      }
+      .modal-content {
+        margin: 0 auto !important;
       }
 
       /* ensure form sits below clusters */
