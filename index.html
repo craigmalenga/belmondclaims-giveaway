@@ -81,7 +81,7 @@
       max-width:400px; margin:1rem auto 0;
       display:flex; flex-direction:column; gap:1rem;
       font-family:'Roboto',sans-serif; font-size:2.1rem; line-height:1.4;
-      position:relative; z-index:20; /* ensure above circles */
+      position:relative; z-index:20;
     }
     .text-group p { text-align:left }
     .checks {
@@ -250,21 +250,30 @@
 
     /* ========== MOBILE FRIENDLY OVERRIDES ========== */
     @media (max-width: 768px) {
-      /* 1) Full-width grey banner */
+      /* 1) Grey bar 10% taller than logo */
       .header {
         width: 100vw;
         position: relative;
         left: 50%;
         transform: translateX(-50%);
+        padding: 5vw 0;
       }
       .header img {
         width: 70%;
         height: auto;
+        display: block;
+        margin: 0 auto;
       }
 
-      /* 2) Force H1 & H2 single line, shrink via clamp */
+      /* 2) 70% gap between bar and WIN BIG */
+      .content h1 {
+        margin-top: 0.7em;
+      }
+
+      /* 3) Force H1 & H2 same 90vw width, no wrap */
       .content h1,
       .content h2 {
+        width: 90vw;
         white-space: nowrap;
       }
       .content h1 {
@@ -272,32 +281,27 @@
       }
       .content h2 {
         font-size: clamp(1.8rem, 6vw, 2.5rem);
-        /* gap = 1.2 × outer diameter of PS5 cluster = 1.2 × (1.4 × var(--ps5-inner)) ≈ 1.68 × var(--ps5-inner) */
         margin-bottom: calc(var(--ps5-inner) * 1.68);
       }
 
-      /* 3) Remove extra text-group top margin */
-      .text-group {
-        margin-top: 0;
-      }
-
-      /* 4) Reposition clusters to sit left/right in that gap */
-      .small1 {
-        top: 25%;
-        left: 15%;
+      /* 4) Scale clusters 70% and flush edges */
+      .left-cluster,
+      .right-cluster {
+        transform: scale(0.7);
+        transform-origin: center;
       }
       .left-cluster {
+        left: 0;
         top: 45%;
-        left: 30%;
       }
       .right-cluster {
+        left: auto;
+        right: 0;
         top: 45%;
-        left: 70%;
       }
-      .small2 {
-        top: 80%;
-        left: 50%;
-      }
+
+      /* 5) Ensure text-group stays above circles */
+      .text-group { z-index:20; }
     }
   </style>
 </head>
