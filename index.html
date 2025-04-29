@@ -192,7 +192,7 @@
 
     /* ========== MOBILE OVERRIDES ========== */
     @media (max-width: 768px) {
-      /* hide desktop header, titles, clusters */
+      /* hide desktop-only pieces */
       .header,
       .content h1, .content h2,
       .cluster.small1, .cluster.small2,
@@ -200,17 +200,21 @@
         display: none !important;
       }
 
-      /* show the backdrop at true full-screen width */
+      /* show full-width backdrop, no side padding */
       .mobile-backdrop {
         display: block;
         margin: 0;
       }
-      /* remove extra top padding so backdrop touches top */
       .content {
-        padding: 0 20px 4rem;
+        padding: 0 0 4rem;
       }
 
-      /* keep checkboxes indented only */
+      /* hide duplicated lead <p> */
+      .text-group p {
+        display: none;
+      }
+
+      /* only checkboxes indented */
       .checks {
         padding-left: 1rem;
       }
