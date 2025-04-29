@@ -62,11 +62,6 @@
       z-index:1000;
       width:100%;
     }
-    .header img {
-      height:100px;
-      display:block;
-      margin:0 auto;
-    }
 
     /* CONTENT + TITLES */
     .content {
@@ -185,11 +180,10 @@
       position:relative; z-index:20;
     }
 
-    /* remove lead paragraph entirely */
-
     .checks {
       display:flex; flex-direction:column; gap:.75rem;
       font-size:0.6rem; /* reduced to 60% */
+      padding-left:1rem; /* indent on mobile */
     }
     .checks input { width:18px; height:18px; accent-color:var(--accent); margin-right:8px }
     .checks label {
@@ -254,8 +248,10 @@
 
     /* ========== MOBILE FRIENDLY OVERRIDES ========== */
     @media (max-width: 768px) {
+      /* flush backdrop to top, remove extra padding */
+      .content { padding:0 20px 4rem; }
 
-      /* show the backdrop and hide headings+clusters */
+      /* show mobile backdrop and hide desktop content */
       .mobile-backdrop { display:block; }
       .content h1,
       .content h2,
@@ -265,17 +261,12 @@
         display:none !important;
       }
 
-      /* tighten content padding */
-      .content { padding:2rem 0 4rem; }
-
-      /* KEEP the form & checks & button unchanged */
+      /* form stays below */
       .text-group { margin-top:0; }
     }
   </style>
 </head>
 <body>
-
-  <!-- HEADER removed in markup -->
 
   <!-- CONTENT -->
   <div class="content">
@@ -285,13 +276,11 @@
     <!-- Desktop headings & clusters -->
     <h1>WIN BIG</h1>
     <h2>with Belmond &amp; Co and Smarterbuys!</h2>
-
     <div class="cluster small1">
       <div class="circle outer"></div>
       <div class="circle mid"></div>
       <div class="circle inner"></div>
     </div>
-
     <div class="clusters-row">
       <div class="cluster left-cluster">
         <div class="circle outer"></div>
@@ -306,7 +295,6 @@
         <img class="icon" src="tv.png" alt="Samsung TV">
       </div>
     </div>
-
     <div class="cluster small2">
       <div class="circle outer"></div>
       <div class="circle mid"></div>
