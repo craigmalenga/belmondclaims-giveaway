@@ -56,7 +56,12 @@
       background:var(--header-bg);
       text-align:center;
       padding:20px 0;
-      position:relative; z-index:10;
+      position:relative;
+      z-index:10;
+      /* full-width by default so pinch-zoom can't shrink it */
+      width:100%;
+      left:0;
+      transform:none;
     }
     .header img { height:100px }
 
@@ -246,33 +251,33 @@
 
     /* ========== MOBILE FRIENDLY OVERRIDES ========== */
     @media (max-width: 768px) {
-      /* ensure no horizontal scrollbar */
+      /* prevent any horizontal scroll */
       body { overflow-x: hidden; }
 
-      /* 1) Full-width, slightly taller grey bar */
+      /* header always full width, no transform hack */
       .header {
-        width: 100vw;
-        left: 50%; transform: translateX(-50%);
+        width: 100%;
         padding: 5vw 0;
+        left: 0; transform: none;
       }
       .header img {
         width: 70%; height: auto;
         display: block; margin: 0 auto;
       }
 
-      /* 2) Shrink content padding for a tight gap under header */
+      /* tighten content padding */
       .content {
-        padding: 2rem 1rem 4rem;
+        padding: 2rem 0 4rem;
       }
 
-      /* 3) Force H1 & H2 full 100vw, no wrap, tiny gap */
+      /* headings forced 100% width, two lines only */
       .content h1,
       .content h2 {
-        width: 100vw; white-space: nowrap;
-        margin: 0;
+        width: 100%; white-space: nowrap;
+        margin: 0; padding: 0 1rem;
       }
       .content h1 {
-        font-size: clamp(5rem, 20vw, 8rem);
+        font-size: clamp(5rem, 20vw, 7.5rem);
         margin-top: 0.5em;
       }
       .content h2 {
@@ -280,23 +285,40 @@
         margin-bottom: 1rem;
       }
 
-      /* 4) Scale clusters 70% and flush edges */
-      .left-cluster,
-      .right-cluster {
-        transform: scale(0.7);
-        transform-origin: center;
-      }
-      .left-cluster {
-        left: 0; top: 45%;
-      }
-      .right-cluster {
-        left: auto; right: 0; top: 45%;
+      /* hide small decorative circles */
+      .small1, .small2 {
+        display: none;
       }
 
-      /* 5) Text/form only below circles */
+      /* flex container for PS5 + TV flush left/right */
+      .clusters-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0 1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+      }
+      .clusters-row .cluster {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+      }
+      .clusters-row .left-cluster {
+        width: var(--ps5-inner) !important;
+        height: var(--ps5-inner) !important;
+      }
+      .clusters-row .right-cluster {
+        width: var(--tv-inner) !important;
+        height: var(--tv-inner) !important;
+      }
+
+      /* ensure the form sits below the clusters */
       .text-group {
-        margin-top: calc(var(--ps5-inner) * 1.4 * 0.7 + 1rem);
-        z-index:20;
+        margin-top: 0;
+        z-index: 20;
       }
     }
   </style>
@@ -313,27 +335,30 @@
     <h1>WIN BIG</h1>
     <h2>with Belmond &amp; Co and Smarterbuys!</h2>
 
-    <!-- CIRCLES -->
+    <!-- desktop-only small1 -->
     <div class="cluster small1">
       <div class="circle outer"></div>
       <div class="circle mid"></div>
       <div class="circle inner"></div>
     </div>
 
-    <div class="cluster left-cluster">
-      <div class="circle outer"></div>
-      <div class="circle mid"></div>
-      <div class="circle inner"></div>
-      <img class="icon" src="console.png" alt="PS5 Console">
+    <!-- mobile-flexible row for PS5 & TV -->
+    <div class="clusters-row">
+      <div class="cluster left-cluster">
+        <div class="circle outer"></div>
+        <div class="circle mid"></div>
+        <div class="circle inner"></div>
+        <img class="icon" src="console.png" alt="PS5 Console">
+      </div>
+      <div class="cluster right-cluster">
+        <div class="circle outer"></div>
+        <div class="circle mid"></div>
+        <div class="circle inner"></div>
+        <img class="icon" src="tv.png" alt="Samsung TV">
+      </div>
     </div>
 
-    <div class="cluster right-cluster">
-      <div class="circle outer"></div>
-      <div class="circle mid"></div>
-      <div class="circle inner"></div>
-      <img class="icon" src="tv.png" alt="Samsung TV">
-    </div>
-
+    <!-- desktop-only small2 -->
     <div class="cluster small2">
       <div class="circle outer"></div>
       <div class="circle mid"></div>
