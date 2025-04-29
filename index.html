@@ -52,7 +52,7 @@
       overflow-x:hidden;
     }
 
-    /* HEADER */
+    /* HEADER (logo removed in markup) */
     .header {
       background:var(--header-bg);
       text-align:center;
@@ -64,22 +64,22 @@
     }
     .header img {
       height:100px;
-      display:block; margin:0 auto;
+      display:block;
+      margin:0 auto;
     }
 
     /* CONTENT + TITLES */
     .content {
       position:relative;
-      /* push down below fixed header (100px img + 40px padding) */
+      /* push down below fixed header: 100px image + 40px vertical padding */
       padding:140px 20px 200px;
     }
 
-    /* mobile backdrop image, hidden by default */
+    /* mobile backdrop image */
     .mobile-backdrop {
       display:none;
       width:100vw; height:auto;
       margin:0 auto 1rem;
-      display:block;
     }
 
     .content h1, .content h2 {
@@ -184,10 +184,12 @@
       font-family:'Roboto',sans-serif; font-size:2.1rem; line-height:1.4;
       position:relative; z-index:20;
     }
-    .text-group p { text-align:left }
+
+    /* remove lead paragraph entirely */
+
     .checks {
       display:flex; flex-direction:column; gap:.75rem;
-      font-size:1rem;
+      font-size:0.6rem; /* reduced to 60% */
     }
     .checks input { width:18px; height:18px; accent-color:var(--accent); margin-right:8px }
     .checks label {
@@ -266,9 +268,6 @@
       /* tighten content padding */
       .content { padding:2rem 0 4rem; }
 
-      /* headings rules (now hidden) have no effect */
-      .content h1, .content h2 { width:auto; }
-
       /* KEEP the form & checks & button unchanged */
       .text-group { margin-top:0; }
     }
@@ -276,10 +275,7 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <img src="logo.png" alt="Belmond &amp; Co">
-  </div>
+  <!-- HEADER removed in markup -->
 
   <!-- CONTENT -->
   <div class="content">
@@ -317,11 +313,8 @@
       <div class="circle inner"></div>
     </div>
 
-    <!-- Always-visible form -->
+    <!-- TEXT & FORM (lead <p> removed) -->
     <div class="text-group">
-      <p>
-        Enter now for a chance to win a 65 Inch Samsung 2024 Crystal UHD TV and a PS5 console worth over £1000 — a great opportunity not to be missed!
-      </p>
       <div class="checks">
         <label>
           <input type="checkbox" id="notify">
@@ -345,7 +338,10 @@
       <input type="email" id="modal-email" placeholder="you@example.com">
       <div class="reconsider" id="reconsider-section" style="display:none;">
         <p>
-          Would you like to reconsider and opt into future similar giveaways or communications from Belmond and Smarterbuys? Your data would not be passed onto other third parties. You will still be entered into this giveaway regardless of your selection here.
+          Would you like to reconsider and opt into future similar giveaways or
+          communications from Belmond and Smarterbuys? Your data would not be
+          passed onto other third parties. You will still be entered into this
+          giveaway regardless of your selection here.
         </p>
         <label>
           <input type="checkbox" id="modal-marketing">
