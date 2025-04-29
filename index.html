@@ -76,6 +76,95 @@
       font-size:3rem; margin-bottom:0;
     }
 
+    /* CIRCLES (clusters) */
+    .cluster { position:absolute; z-index:1 }
+    .cluster .circle {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      border-radius:50%;
+    }
+    .cluster .icon {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+    }
+    .circle.outer { background:var(--c-outer) }
+    .circle.mid   { background:var(--c-mid)   }
+    .circle.inner { background:var(--c-inner) }
+
+    /* --- SMALL1 --- */
+    .small1 {
+      top: var(--small1-top); left: var(--small1-left);
+      width: var(--sm1-outer); height: var(--sm1-outer);
+    }
+    .small1 .outer { width: var(--sm1-outer); height: var(--sm1-outer) }
+    .small1 .mid   {
+      width: calc(var(--sm1-outer)*0.85);
+      height:calc(var(--sm1-outer)*0.85);
+    }
+    .small1 .inner {
+      width: calc(var(--sm1-outer)*0.7);
+      height:calc(var(--sm1-outer)*0.7);
+    }
+
+    /* --- PS5 CLUSTER --- */
+    .left-cluster {
+      top: var(--ps5-top); left: var(--ps5-left);
+      width:calc(var(--ps5-inner)*1.4);
+      height:calc(var(--ps5-inner)*1.4);
+    }
+    .left-cluster .outer {
+      width:calc(var(--ps5-inner)*1.4);
+      height:calc(var(--ps5-inner)*1.4);
+    }
+    .left-cluster .mid   {
+      width:calc(var(--ps5-inner)*1.2);
+      height:calc(var(--ps5-inner)*1.2);
+    }
+    .left-cluster .inner {
+      width:var(--ps5-inner); height:var(--ps5-inner);
+    }
+    .left-cluster .icon  {
+      width:calc(var(--ps5-inner)*0.72*1.5);
+    }
+
+    /* --- TV CLUSTER --- */
+    .right-cluster {
+      top: var(--tv-top); left: var(--tv-left);
+      width:calc(var(--tv-inner)*1.4);
+      height:calc(var(--tv-inner)*1.4);
+    }
+    .right-cluster .outer {
+      width:calc(var(--tv-inner)*1.4);
+      height:calc(var(--tv-inner)*1.4);
+    }
+    .right-cluster .mid   {
+      width:calc(var(--tv-inner)*1.2);
+      height:calc(var(--tv-inner)*1.2);
+    }
+    .right-cluster .inner {
+      width:var(--tv-inner); height:var(--tv-inner);
+    }
+    .right-cluster .icon  {
+      width:calc(var(--tv-inner)*0.77*1.5);
+    }
+
+    /* --- SMALL2 --- */
+    .small2 {
+      top: var(--small2-top); left: var(--small2-left);
+      width: var(--sm2-outer); height: var(--sm2-outer);
+    }
+    .small2 .outer {
+      width: var(--sm2-outer); height: var(--sm2-outer);
+    }
+    .small2 .mid   {
+      width:calc(var(--sm2-outer)*0.85);
+      height:calc(var(--sm2-outer)*0.85);
+    }
+    .small2 .inner {
+      width:calc(var(--sm2-outer)*0.7);
+      height:calc(var(--sm2-outer)*0.7);
+    }
+
     /* TEXT + FORM */
     .text-group {
       max-width:400px; margin:1rem auto 0;
@@ -102,99 +191,6 @@
       font-family:'Brandon Grotesque',sans-serif;
     }
     .enter-btn:enabled { opacity:1 }
-
-    /* CLUSTER BASE */
-    .cluster {
-      position:absolute; z-index:1;
-    }
-    .cluster .circle {
-      position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      border-radius:50%;
-    }
-    .cluster .icon {
-      position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%);
-    }
-    .circle.outer { background:var(--c-outer) }
-    .circle.mid   { background:var(--c-mid)   }
-    .circle.inner { background:var(--c-inner) }
-
-    /* --- SMALL1 (upper-left) --- */
-    .small1 {
-      top: var(--small1-top); left: var(--small1-left);
-      width: var(--sm1-outer); height: var(--sm1-outer);
-    }
-    .small1 .outer {
-      width: var(--sm1-outer); height: var(--sm1-outer);
-    }
-    .small1 .mid   {
-      width: calc(var(--sm1-outer)*0.85);
-      height:calc(var(--sm1-outer)*0.85);
-    }
-    .small1 .inner {
-      width: calc(var(--sm1-outer)*0.7);
-      height:calc(var(--sm1-outer)*0.7);
-    }
-
-    /* --- PS5 CLUSTER (left) --- */
-    .left-cluster {
-      top: var(--ps5-top); left: var(--ps5-left);
-      width:calc(var(--ps5-inner)*1.4);
-      height:calc(var(--ps5-inner)*1.4);
-    }
-    .left-cluster .outer {
-      width:calc(var(--ps5-inner)*1.4);
-      height:calc(var(--ps5-inner)*1.4);
-    }
-    .left-cluster .mid   {
-      width:calc(var(--ps5-inner)*1.2);
-      height:calc(var(--ps5-inner)*1.2);
-    }
-    .left-cluster .inner {
-      width:var(--ps5-inner); height:var(--ps5-inner);
-    }
-    .left-cluster .icon  {
-      width:calc(var(--ps5-inner)*0.72*1.5);
-    }
-
-    /* --- TV CLUSTER (right) --- */
-    .right-cluster {
-      top: var(--tv-top); left: var(--tv-left);
-      width:calc(var(--tv-inner)*1.4);
-      height:calc(var(--tv-inner)*1.4);
-    }
-    .right-cluster .outer {
-      width:calc(var(--tv-inner)*1.4);
-      height:calc(var(--tv-inner)*1.4);
-    }
-    .right-cluster .mid   {
-      width:calc(var(--tv-inner)*1.2);
-      height:calc(var(--tv-inner)*1.2);
-    }
-    .right-cluster .inner {
-      width:var(--tv-inner); height:var(--tv-inner);
-    }
-    .right-cluster .icon  {
-      width:calc(var(--tv-inner)*0.77*1.5);
-    }
-
-    /* --- SMALL2 (below button) --- */
-    .small2 {
-      top: var(--small2-top); left: var(--small2-left);
-      width: var(--sm2-outer); height: var(--sm2-outer);
-    }
-    .small2 .outer {
-      width: var(--sm2-outer); height: var(--sm2-outer);
-    }
-    .small2 .mid   {
-      width:calc(var(--sm2-outer)*0.85);
-      height:calc(var(--sm2-outer)*0.85);
-    }
-    .small2 .inner {
-      width:calc(var(--sm2-outer)*0.7);
-      height:calc(var(--sm2-outer)*0.7);
-    }
 
     /* ========== FINAL MESSAGE ========== */
     .final-message {
@@ -250,38 +246,38 @@
 
     /* ========== MOBILE FRIENDLY OVERRIDES ========== */
     @media (max-width: 768px) {
-      /* 1) Grey bar 10% taller than logo */
+      /* ensure no horizontal scrollbar */
+      body { overflow-x: hidden; }
+
+      /* 1) Full-width, slightly taller grey bar */
       .header {
         width: 100vw;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 50%; transform: translateX(-50%);
         padding: 5vw 0;
       }
       .header img {
-        width: 70%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
+        width: 70%; height: auto;
+        display: block; margin: 0 auto;
       }
 
-      /* 2) 70% gap between bar and WIN BIG */
-      .content h1 {
-        margin-top: 0.7em;
+      /* 2) Shrink content padding for a tight gap under header */
+      .content {
+        padding: 2rem 1rem 4rem;
       }
 
-      /* 3) Force H1 & H2 same 90vw width, no wrap */
+      /* 3) Force H1 & H2 full 100vw, no wrap, tiny gap */
       .content h1,
       .content h2 {
-        width: 90vw;
-        white-space: nowrap;
+        width: 100vw; white-space: nowrap;
+        margin: 0;
       }
       .content h1 {
         font-size: clamp(5rem, 20vw, 8rem);
+        margin-top: 0.5em;
       }
       .content h2 {
         font-size: clamp(1.8rem, 6vw, 2.5rem);
-        margin-bottom: calc(var(--ps5-inner) * 1.68);
+        margin-bottom: 1rem;
       }
 
       /* 4) Scale clusters 70% and flush edges */
@@ -291,17 +287,17 @@
         transform-origin: center;
       }
       .left-cluster {
-        left: 0;
-        top: 45%;
+        left: 0; top: 45%;
       }
       .right-cluster {
-        left: auto;
-        right: 0;
-        top: 45%;
+        left: auto; right: 0; top: 45%;
       }
 
-      /* 5) Ensure text-group stays above circles */
-      .text-group { z-index:20; }
+      /* 5) Text/form only below circles */
+      .text-group {
+        margin-top: calc(var(--ps5-inner) * 1.4 * 0.7 + 1rem);
+        z-index:20;
+      }
     }
   </style>
 </head>
@@ -316,26 +312,6 @@
   <div class="content">
     <h1>WIN BIG</h1>
     <h2>with Belmond &amp; Co and Smarterbuys!</h2>
-
-    <!-- TEXT & FORM -->
-    <div class="text-group">
-      <p>
-        Enter now for a chance to win a 65 Inch Samsung 2024 Crystal UHD TV and a PS5 console worth over £1000 — a great opportunity not to be missed!
-      </p>
-      <div class="checks">
-        <label><input type="checkbox" id="notify">
-          Tick here to allow Belmond / Smarterbuys to communicate with you
-          about future similar giveaways or other products and opportunities          
-        </label>
-        <label><input type="checkbox" id="marketing">
-          Tick here to allow Belmond / Smarterbuys to communicate with you
-          about future similar giveaways or other opportunities
-        </label>
-      </div>
-      <button class="enter-btn" id="enter" disabled>
-        Click here to enter the giveaway
-      </button>
-    </div>
 
     <!-- CIRCLES -->
     <div class="cluster small1">
@@ -362,6 +338,26 @@
       <div class="circle outer"></div>
       <div class="circle mid"></div>
       <div class="circle inner"></div>
+    </div>
+
+    <!-- TEXT & FORM -->
+    <div class="text-group">
+      <p>
+        Enter now for a chance to win a 65 Inch Samsung 2024 Crystal UHD TV and a PS5 console worth over £1000 — a great opportunity not to be missed!
+      </p>
+      <div class="checks">
+        <label><input type="checkbox" id="notify">
+          Tick here to allow Belmond / Smarterbuys to communicate with you
+          about future similar giveaways or other products and opportunities          
+        </label>
+        <label><input type="checkbox" id="marketing">
+          Tick here to allow Belmond / Smarterbuys to communicate with you
+          about future similar giveaways or other opportunities
+        </label>
+      </div>
+      <button class="enter-btn" id="enter" disabled>
+        Click here to enter the giveaway
+      </button>
     </div>
   </div>
 
