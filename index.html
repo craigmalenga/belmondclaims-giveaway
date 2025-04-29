@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
   <title>Belmond &amp; Co Giveaway</title>
 
   <!-- Roboto for body text -->
@@ -57,19 +57,22 @@
       background:var(--header-bg);
       text-align:center;
       padding:20px 0;
-      position:relative; z-index:10;
-      width:100%; left:0; transform:none;
-      min-width:100vw;
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1000;
+      width:100%;
     }
     .header img {
       height:100px;
-      display:block; margin:0 auto;
+      display:block;
+      margin:0 auto;
     }
 
     /* CONTENT + TITLES */
     .content {
       position:relative;
-      padding:100px 20px 200px;
+      /* push down below fixed header: 100px image + 40px vertical padding */
+      padding:140px 20px 200px;
     }
     .content h1, .content h2 {
       position:relative; z-index:20;
@@ -297,8 +300,7 @@
 
       /* center the modal */
       .modal {
-        justify-content: center !important;
-        align-items: center !important;
+        justify-content: center !important; align-items: center !important;
       }
       .modal-content {
         margin: 0 auto !important;
@@ -426,7 +428,7 @@
     submitBtn.addEventListener('click', async () => {
       errorMsg.textContent = '';
       const email = emailIn.value.trim();
-      if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         errorMsg.textContent = 'Please enter a valid email address.';
         return;
       }
