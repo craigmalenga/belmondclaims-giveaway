@@ -64,16 +64,24 @@
     }
     .header img {
       height:100px;
-      display:block;
-      margin:0 auto;
+      display:block; margin:0 auto;
     }
 
     /* CONTENT + TITLES */
     .content {
       position:relative;
-      /* push down below fixed header: 100px image + 40px vertical padding */
+      /* push down below fixed header (100px img + 40px padding) */
       padding:140px 20px 200px;
     }
+
+    /* mobile backdrop image, hidden by default */
+    .mobile-backdrop {
+      display:none;
+      width:100vw; height:auto;
+      margin:0 auto 1rem;
+      display:block;
+    }
+
     .content h1, .content h2 {
       position:relative; z-index:20;
       text-align:center; margin:0 auto; width:fit-content;
@@ -198,22 +206,15 @@
 
     /* ========== FINAL MESSAGE ========== */
     .final-message {
-      position: relative;
-      z-index: 20;
-      text-align: center;
-      color: #fff;
-      font-size: 3rem;
-      margin: 2rem auto;
-      max-width: 800px;
+      position:relative; z-index:20; text-align:center; color:#fff;
+      font-size:3rem; margin:2rem auto; max-width:800px;
     }
 
     /* MODAL */
     .modal {
-      position:fixed; top:0; left:0;
-      width:100%; height:100%;
-      background:rgba(0,0,0,0.5);
-      display:none; justify-content:center; align-items:center;
-      z-index:50;
+      position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.5); display:none;
+      justify-content:center; align-items:center; z-index:50;
     }
     .modal.open { display:flex; }
     .modal-content {
@@ -251,65 +252,25 @@
 
     /* ========== MOBILE FRIENDLY OVERRIDES ========== */
     @media (max-width: 768px) {
-      /* tighten content padding */
-      .content {
-        padding: 2rem 0 4rem;
-      }
 
-      /* headings fill container, H1 nowrap, H2 wraps */
+      /* show the backdrop and hide headings+clusters */
+      .mobile-backdrop { display:block; }
       .content h1,
-      .content h2 {
-        width: 100%; margin:0; padding:0 1rem; text-align:center;
-      }
-      .content h1 {
-        white-space: nowrap;
-        font-size: clamp(5rem, 20vw, 7.5rem);
-        margin-top: 0.5em;
-      }
-      .content h2 {
-        white-space: normal;
-        font-size: clamp(1.8rem, 6vw, 2.5rem);
-        margin-bottom: 1rem;
+      .content h2,
+      .clusters-row,
+      .cluster.small1,
+      .cluster.small2 {
+        display:none !important;
       }
 
-      /* hide small decorative circles */
-      .small1, .small2 { display: none; }
+      /* tighten content padding */
+      .content { padding:2rem 0 4rem; }
 
-      /* flex PS5+TV flush to edges, scaled to 50% */
-      .clusters-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 1.5rem;
-        position: relative;
-        padding: 0;
-      }
-      .clusters-row .cluster {
-        position: relative !important;
-        transform: none !important;
-      }
-      .clusters-row .left-cluster {
-        width: calc(var(--ps5-inner)*0.5) !important;
-        height: calc(var(--ps5-inner)*0.5) !important;
-      }
-      .clusters-row .right-cluster {
-        width: calc(var(--tv-inner)*0.5) !important;
-        height: calc(var(--tv-inner)*0.5) !important;
-      }
+      /* headings rules (now hidden) have no effect */
+      .content h1, .content h2 { width:auto; }
 
-      /* center the modal */
-      .modal {
-        justify-content: center !important; align-items: center !important;
-      }
-      .modal-content {
-        margin: 0 auto !important;
-      }
-
-      /* ensure form sits below clusters */
-      .text-group {
-        margin-top: 0;
-      }
+      /* KEEP the form & checks & button unchanged */
+      .text-group { margin-top:0; }
     }
   </style>
 </head>
@@ -322,17 +283,19 @@
 
   <!-- CONTENT -->
   <div class="content">
+    <!-- Mobile-only backdrop image -->
+    <img class="mobile-backdrop" src="mobile_backdrop.png" alt="Giveaway details" />
+
+    <!-- Desktop headings & clusters -->
     <h1>WIN BIG</h1>
     <h2>with Belmond &amp; Co and Smarterbuys!</h2>
 
-    <!-- desktop-only small1 -->
     <div class="cluster small1">
       <div class="circle outer"></div>
       <div class="circle mid"></div>
       <div class="circle inner"></div>
     </div>
 
-    <!-- mobile-flexible row for PS5 & TV -->
     <div class="clusters-row">
       <div class="cluster left-cluster">
         <div class="circle outer"></div>
@@ -348,26 +311,25 @@
       </div>
     </div>
 
-    <!-- desktop-only small2 -->
     <div class="cluster small2">
       <div class="circle outer"></div>
       <div class="circle mid"></div>
       <div class="circle inner"></div>
     </div>
 
-    <!-- TEXT & FORM -->
+    <!-- Always-visible form -->
     <div class="text-group">
       <p>
         Enter now for a chance to win a 65 Inch Samsung 2024 Crystal UHD TV and a PS5 console worth over £1000 — a great opportunity not to be missed!
       </p>
       <div class="checks">
-        <label><input type="checkbox" id="notify">
-          Tick here to allow Belmond / Smarterbuys to communicate with you
-          about future similar giveaways or other products and opportunities
+        <label>
+          <input type="checkbox" id="notify">
+          Tick here to allow Belmond / Smarterbuys to communicate with you about future similar giveaways or other products and opportunities
         </label>
-        <label><input type="checkbox" id="marketing">
-          Tick here to allow Belmond / Smarterbuys to communicate with you
-          about future similar giveaways or other opportunities
+        <label>
+          <input type="checkbox" id="marketing">
+          Tick here to allow Belmond / Smarterbuys to communicate with you about future similar giveaways or other opportunities
         </label>
       </div>
       <button class="enter-btn" id="enter" disabled>
@@ -383,12 +345,10 @@
       <input type="email" id="modal-email" placeholder="you@example.com">
       <div class="reconsider" id="reconsider-section" style="display:none;">
         <p>
-          Would you like to reconsider and opt into future similar giveaways or
-          communications from Belmond and Smarterbuys? Your data would not be
-          passed onto other third parties. You will still be entered into this
-          giveaway regardless of your selection here.
+          Would you like to reconsider and opt into future similar giveaways or communications from Belmond and Smarterbuys? Your data would not be passed onto other third parties. You will still be entered into this giveaway regardless of your selection here.
         </p>
-        <label><input type="checkbox" id="modal-marketing">
+        <label>
+          <input type="checkbox" id="modal-marketing">
           Yes, I’d like to opt in as outlined
         </label>
       </div>
