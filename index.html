@@ -49,6 +49,7 @@
       background:var(--bg);
       color:#fff;
       font-family:'Brandon Grotesque',sans-serif;
+      overflow-x:hidden;
     }
 
     /* HEADER */
@@ -56,14 +57,14 @@
       background:var(--header-bg);
       text-align:center;
       padding:20px 0;
-      position:relative;
-      z-index:10;
-      /* full-width by default so pinch-zoom can't shrink it */
-      width:100%;
-      left:0;
-      transform:none;
+      position:relative; z-index:10;
+      width:100%; left:0; transform:none;
     }
-    .header img { height:100px }
+    .header img {
+      height:100px;
+      display:block;
+      margin:0 auto;
+    }
 
     /* CONTENT + TITLES */
     .content {
@@ -74,19 +75,14 @@
       position:relative; z-index:20;
       text-align:center; margin:0 auto; width:fit-content;
     }
-    .content h1 {
-      font-size:12rem; line-height:1; margin-top:20px;
-    }
-    .content h2 {
-      font-size:3rem; margin-bottom:0;
-    }
+    .content h1 { font-size:12rem; line-height:1; margin-top:20px; }
+    .content h2 { font-size:3rem; margin-bottom:0; }
 
     /* CIRCLES (clusters) */
     .cluster { position:absolute; z-index:1 }
     .cluster .circle {
       position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%);
-      border-radius:50%;
+      transform:translate(-50%,-50%); border-radius:50%;
     }
     .cluster .icon {
       position:absolute; top:50%; left:50%;
@@ -256,13 +252,10 @@
 
       /* header always full width, no transform hack */
       .header {
-        width: 100%;
         padding: 5vw 0;
-        left: 0; transform: none;
       }
       .header img {
         width: 70%; height: auto;
-        display: block; margin: 0 auto;
       }
 
       /* tighten content padding */
@@ -270,25 +263,26 @@
         padding: 2rem 0 4rem;
       }
 
-      /* headings forced 100% width, two lines only */
+      /* headings fill container, H1 nowrap, H2 wraps to two lines */
       .content h1,
       .content h2 {
-        width: 100%; white-space: nowrap;
-        margin: 0; padding: 0 1rem;
+        width: 100%;
+        margin: 0;
+        padding: 0 1rem;
       }
       .content h1 {
+        white-space: nowrap;
         font-size: clamp(5rem, 20vw, 7.5rem);
         margin-top: 0.5em;
       }
       .content h2 {
+        white-space: normal;
         font-size: clamp(1.8rem, 6vw, 2.5rem);
         margin-bottom: 1rem;
       }
 
       /* hide small decorative circles */
-      .small1, .small2 {
-        display: none;
-      }
+      .small1, .small2 { display: none; }
 
       /* flex container for PS5 + TV flush left/right */
       .clusters-row {
@@ -302,23 +296,20 @@
       }
       .clusters-row .cluster {
         position: relative !important;
-        top: auto !important;
-        left: auto !important;
         transform: none !important;
       }
       .clusters-row .left-cluster {
-        width: var(--ps5-inner) !important;
-        height: var(--ps5-inner) !important;
+        width: calc(var(--ps5-inner) * 0.6) !important;
+        height: calc(var(--ps5-inner) * 0.6) !important;
       }
       .clusters-row .right-cluster {
-        width: var(--tv-inner) !important;
-        height: var(--tv-inner) !important;
+        width: calc(var(--tv-inner) * 0.6) !important;
+        height: calc(var(--tv-inner) * 0.6) !important;
       }
 
-      /* ensure the form sits below the clusters */
+      /* ensure form sits below clusters */
       .text-group {
         margin-top: 0;
-        z-index: 20;
       }
     }
   </style>
@@ -373,7 +364,7 @@
       <div class="checks">
         <label><input type="checkbox" id="notify">
           Tick here to allow Belmond / Smarterbuys to communicate with you
-          about future similar giveaways or other products and opportunities          
+          about future similar giveaways or other products and opportunities
         </label>
         <label><input type="checkbox" id="marketing">
           Tick here to allow Belmond / Smarterbuys to communicate with you
@@ -438,7 +429,7 @@
     submitBtn.addEventListener('click', async () => {
       errorMsg.textContent = '';
       const email = emailIn.value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
         errorMsg.textContent = 'Please enter a valid email address.';
         return;
       }
