@@ -131,7 +131,7 @@
     }
     .right-cluster .outer { width:calc(var(--tv-inner)*1.4); height:calc(var(--tv-inner)*1.4) }
     .right-cluster .mid   { width:calc(var(--tv-inner)*1.2); height:calc(var(--tv-inner)*1.2) }
-    .right-cluster .inner { width:var(--tv-inner); height:var(--tv-inner) }
+    .right-cluster .inner { width:var(--tv-inner); height:val(--tv-inner) }
     .right-cluster .icon  { width:calc(var(--tv-inner)*0.77*1.5) }
 
     .small2 {
@@ -224,6 +224,13 @@
       .enter-btn {
         font-size: 2.04rem;  /* 1.2rem × 1.7 */
         font-weight: 700;
+      }
+    }
+
+    /* ========== HIDE HEADER ON DESKTOP ========== */
+    @media (min-width: 769px) {
+      .header {
+        display: none !important;
       }
     }
   </style>
