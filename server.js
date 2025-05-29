@@ -22,11 +22,13 @@ app.post('/submit', async (req, res) => {
   const opt_in       = marketing ? 1 : 0;
 
   try {
+
     await pool.execute(
-      `INSERT INTO entries (email, notify, opt_in)
-       VALUES (?, ?, ?)`,
-      [email, shouldNotify, opt_in]
+      `INSERT INTO entries (email, notify, opt_in, campaign)
+       VALUES (?, ?, ?, ?)`,
+      [ email, shouldNotify, opt_in, 'TV/PS5' ]
     );
+
     res.sendStatus(200);
   } catch (err) {
     console.error('DB error:', err);
